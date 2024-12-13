@@ -11,10 +11,13 @@
     <div v-else>
       <div class="title">{{ config.title }}</div>
       <a :href="config.manualLink" target="_blank">
-        <SelectBtn class="btnCard" id="btn1" :inside="config.manual"></SelectBtn>
+        <GreenBtn class="btnCard" id="btn1" :inside="config.manual" />
       </a>
-      <SelectBtn class="btnCard" id="btn2" :inside="config.newgame" @click="newgame()"></SelectBtn>
+      <BlueBtn class="btnCard" id="btn2" :inside="config.newgame" @click="newgame()" />
+      <GreenBtn class="btnCard" id="btn3" :inside="config.credit" @click="showCredit = true" />
     </div>
+    <Credit v-show="showCredit"  @close="showCredit = false" />
+    
   </div>
 
 </template>
@@ -22,8 +25,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-// import SelectBtn from '@/components/flame/GreenBtn.vue';
-import SelectBtn from '@/components/flame/BlueBtn.vue';
+import Credit from '@/ui/Credit.vue';
+
+import BlueBtn from '@/components/flame/BlueBtn.vue';
+import GreenBtn from '@/components/flame/GreenBtn.vue';
 import config from '@/config/commonConfig.ts';
 //状態管理
 import { useStatusStore } from '@/stores/Status.ts';
@@ -37,6 +42,7 @@ const isGameStart = ref(false);
 // const isVertical = ref(window.innerHeight > window.innerWidth);
 const isVertical = ref(false);
 const refWidth = ref(window.innerWidth);
+const showCredit = ref(false);
 
 //ロード時
 onMounted(() => {
@@ -106,17 +112,24 @@ function newgame() {
 
 #btn1 {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-  animation: show 1.5s;
+  animation: show 1s;
 }
 
 #btn2 {
   position: absolute;
-  top: 80%;
+  top: 68%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-  animation: show 1.7s;
+  animation: show 1.5s;
+}
+#btn3 {
+  position: absolute;
+  top: 86%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  animation: show 2s;
 }
 </style>

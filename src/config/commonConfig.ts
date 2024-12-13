@@ -5,6 +5,7 @@ export default {
   loadgame: 'LOAD GAME',
   manual: 'MANUAL',
   manualLink: 'https://gluem0418.github.io/manualSd/',
+  credit: 'CREDIT',
 
   //common
   textYes: 'YES',
